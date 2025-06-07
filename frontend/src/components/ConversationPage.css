@@ -1,0 +1,374 @@
+.conversation-page {
+  display: flex;
+  justify-content: center;
+  min-height: calc(100vh - 80px);
+  padding: 20px;
+}
+
+.conversation-container {
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 120px);
+}
+
+.conversation-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #000;
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+/* Conversation Header */
+.conversation-header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.conversation-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.conversation-topic {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #000;
+}
+
+.conversation-date {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Model Selection Container */
+.model-selection-container {
+  margin: 20px 0;
+  padding: 16px 0px 0px 0px;
+  background-color: #ffffff;
+  /* border-radius: 8px; */
+  /* border: 1px solid #e0e0e0; */
+}
+
+/* Messages Container */
+.messages-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.no-messages {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  margin-top: 40px;
+}
+
+/* Individual Messages */
+.message {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.message.user {
+  align-self: flex-end;
+  max-width: 80%;
+}
+
+.message.assistant {
+  align-self: flex-start;
+  max-width: 80%;
+}
+
+.message.system {
+  align-self: center;
+  max-width: 60%;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 0 4px;
+}
+
+.message-role {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #666;
+}
+
+.message.user .message-role {
+  color: #007bff;
+}
+
+.message.assistant .message-role {
+  color: #28a745;
+}
+
+.message.system .message-role {
+  color: #6c757d;
+}
+
+.message-timestamp {
+  font-size: 0.75rem;
+  color: #999;
+}
+
+.message-content {
+  background-color: #f8f8f8;
+  border-radius: 12px;
+  padding: 12px 16px;
+  white-space: pre-wrap;
+  line-height: 1.5;
+  color: #000;
+}
+
+.message.user .message-content {
+  background-color: #007bff;
+  color: white;
+}
+
+.message.assistant .message-content {
+  background-color: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  color: #000;
+}
+
+.message.system .message-content {
+  background-color: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  color: #000;
+}
+
+.message-metadata {
+  margin-top: 4px;
+  padding: 0 4px;
+}
+
+.message-metadata small {
+  color: #999;
+  font-size: 0.75rem;
+}
+
+/* Thinking Toggle */
+.thinking-toggle {
+  margin: 8px 0;
+  padding: 0 4px;
+}
+
+.thinking-toggle-btn {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.thinking-toggle-btn:hover {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.toggle-arrow {
+  transition: transform 0.2s ease;
+  font-size: 0.7rem;
+}
+
+.toggle-arrow.expanded {
+  transform: rotate(180deg);
+}
+
+/* Thinking Content */
+.thinking-content {
+  background-color: #f9f9f9;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  margin: 8px 0;
+  overflow: hidden;
+}
+
+.thinking-header {
+  background-color: #f0f0f0;
+  padding: 8px 12px;
+  border-bottom: 1px solid #e8e8e8;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.thinking-block {
+  padding: 12px;
+  border-bottom: 1px solid #f0f0f0;
+  white-space: pre-wrap;
+  line-height: 1.5;
+  color: #444;
+  font-size: 0.9rem;
+}
+
+.thinking-block:last-child {
+  border-bottom: none;
+}
+
+/* Message Actions (Retry Button) */
+.message-actions {
+  margin-top: 8px;
+  padding: 0 4px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.retry-btn {
+  background: none;
+  border: 1px solid #ddd;
+  color: #666;
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.retry-btn:hover:not(:disabled) {
+  background-color: #f0f0f0;
+  border-color: #bbb;
+  color: #333;
+}
+
+.retry-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.retry-icon {
+  font-size: 0.9rem;
+}
+
+.retry-spinner {
+  font-size: 0.9rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ReactMarkdown Styling */
+.message-content ul,
+.message-content ol {
+  margin: 0.5em 0;
+  padding-left: 1.2em;
+}
+
+/* Force bullet text to render inline, not as a separate block */
+.message-content li > p {
+  margin: 0;
+  display: inline;
+}
+
+/* Nested replies */
+.message-replies {
+  margin-left: 20px;
+  margin-top: 16px;
+  border-left: 2px solid #e0e0e0;
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Placeholder and Error States */
+.question-display {
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.question-label {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0 0 8px 0;
+  font-weight: 500;
+}
+
+.question-text {
+  font-size: 1rem;
+  color: #000;
+  margin: 0;
+  font-weight: 500;
+}
+
+.conversation-placeholder {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.conversation-placeholder em {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Follow-up Form */
+.follow-up-form {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #ffffff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .conversation-page {
+    padding: 10px;
+  }
+  
+  .conversation-container {
+    height: calc(100vh - 100px);
+  }
+  
+  .message.user,
+  .message.assistant {
+    max-width: 90%;
+  }
+  
+  .message.system {
+    max-width: 80%;
+  }
+  
+  .message-replies {
+    margin-left: 10px;
+    padding-left: 10px;
+  }
+}

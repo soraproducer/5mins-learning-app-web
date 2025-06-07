@@ -1,0 +1,44 @@
+.layout {
+  min-height: 100vh;
+  background-color: white;
+  color: #333;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-tab {
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #666;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.nav-tab:hover {
+  color: #333;
+  border-bottom-color: #ccc;
+}
+
+.nav-tab.active {
+  color: #000;
+  border-bottom-color: #000;
+}
+
+.main-content {
+  padding-top: 80px;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+}
