@@ -187,10 +187,6 @@ The app supports flexible LLM provider configuration:
 - **Google**: gemini-2.0-flash (default)
 - **Ollama**: gemma3:4b, gemma3:12b, deepseek-r1:8b
 
-## ⭐ Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=soraproducer/5mins-learning-app-web&type=Date)](https://www.star-history.com/#soraproducer/5mins-learning-app-web&Date)
-
 ## 🤝 Contributing
 
 Welcome any kind of contribution.
