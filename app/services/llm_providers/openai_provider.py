@@ -12,7 +12,7 @@ class OpenAIParams(BaseModel):
     """Parameters for OpenAI API calls"""
     model: str = Field(default=settings.OPENAI_MODEL)
     temperature: float = Field(default=0.3, ge=0, le=2.0)
-    max_tokens: int = Field(default=1500, ge=1)
+    max_completion_tokens: int = Field(default=1500, ge=1)
     top_p: float = Field(default=1.0, ge=0, le=1.0)
     presence_penalty: float = Field(default=0.0, ge=-2.0, le=2.0)
     frequency_penalty: float = Field(default=0.0, ge=-2.0, le=2.0)

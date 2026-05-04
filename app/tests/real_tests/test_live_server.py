@@ -74,7 +74,7 @@ async def test_first_reply(conversation_id, providers=None, local_model_id=None)
     if providers or local_model_id:
         request_data = {
             "providers": providers or ["openai", "claude", "gemini"],
-            "local_model_id": local_model_id or "gemma3:12b"
+            "local_model_id": local_model_id or "gemma3:4b"
         }
         print(f"📊 Using providers: {', '.join(request_data.get('providers', []))}")
         print(f"🤖 Using local model: {request_data.get('local_model_id')}")
@@ -102,7 +102,7 @@ async def test_conversation_reply(conversation_id, message_content, providers=No
     request_data = {
         "message_content": message_content,
         "providers": providers or ["openai", "claude", "gemini"],
-        "local_model_id": local_model_id or "gemma3:12b"
+        "local_model_id": local_model_id or "gemma3:4b"
     }
     
     print(f"📊 Using providers: {', '.join(request_data.get('providers', []))}")
@@ -242,7 +242,7 @@ async def run_full_integration_test():
         await test_first_reply(
             conversation_id=conversation_id,
             providers=["openai", "claude", "gemini"],
-            local_model_id="gemma3:12b"
+            local_model_id="gemma3:4b"
         )
         
         # Step 3: Poll for the first message to appear
@@ -264,7 +264,7 @@ async def run_full_integration_test():
             conversation_id=conversation_id,
             message_content=TEST_FOLLOWUP_QUESTION,
             providers=["openai", "claude", "gemini"],
-            local_model_id="gemma3:12b"
+            local_model_id="gemma3:4b"
         )
         
         # Step 5: Poll for the follow-up response, excluding the first message

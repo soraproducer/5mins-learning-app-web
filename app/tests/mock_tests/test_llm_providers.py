@@ -202,10 +202,10 @@ class TestOpenAIProvider:
     @patch("app.services.llm_providers.openai_provider.AsyncOpenAI")
     async def test_openai_initialization(self, mock_openai):
         """Test OpenAI provider initialization"""
-        provider = OpenAIProvider(api_key="test_key", model="gpt-4o-mini")
+        provider = OpenAIProvider(api_key="test_key", model="gpt-5.4-mini")
         
         assert provider.name == "OpenAI"
-        assert provider.model == "gpt-4o-mini"
+        assert provider.model == "gpt-5.4-mini"
         mock_openai.assert_called_once_with(api_key="test_key")
     
     @patch("app.services.llm_providers.openai_provider.AsyncOpenAI")
@@ -257,10 +257,10 @@ class TestClaudeProvider:
     @patch("app.services.llm_providers.claude_provider.AsyncAnthropic")
     async def test_claude_initialization(self, mock_anthropic):
         """Test Claude provider initialization"""
-        provider = ClaudeProvider(api_key="test_key", model="claude-3-haiku-20240307")
+        provider = ClaudeProvider(api_key="test_key", model="claude-3-5-haiku-20241022")
         
         assert provider.name == "Claude"
-        assert provider.model == "claude-3-haiku-20240307"
+        assert provider.model == "claude-3-5-haiku-20241022"
         mock_anthropic.assert_called_once_with(api_key="test_key")
     
     @patch("app.services.llm_providers.claude_provider.AsyncAnthropic")
@@ -316,14 +316,14 @@ class TestGeminiProvider:
         mock_genai.GenerativeModel = MagicMock()
         
         # Initialize provider
-        provider = GeminiProvider(api_key="test_key", model="gemini-2.0-flash")
+        provider = GeminiProvider(api_key="test_key", model="gemini-2.5-flash-lite")
         
         # Verify configure was called with API key
         mock_genai.configure.assert_called_once_with(api_key="test_key")
         
         # Check provider basics
         assert provider.name == "Gemini"
-        assert provider.model == "gemini-2.0-flash"
+        assert provider.model == "gemini-2.5-flash-lite"
     
     @patch("app.services.llm_providers.gemini_provider.genai")
     @patch("app.services.llm_providers.gemini_provider.HarmCategory")
@@ -367,7 +367,7 @@ class TestGeminiProvider:
         
         # Verify model was created with correct parameters
         mock_genai.GenerativeModel.assert_called_once()
-        assert mock_genai.GenerativeModel.call_args[1]["model_name"] == "gemini-2.0-flash"
+        assert mock_genai.GenerativeModel.call_args[1]["model_name"] == "gemini-2.5-flash-lite"
         
         # Verify chat was started
         mock_model_instance.start_chat.assert_called_once()
@@ -384,7 +384,7 @@ class TestGeminiProvider:
         assert response.metrics["prompt_tokens"] == 20
         assert response.metrics["completion_tokens"] == 30
         assert response.metrics["total_tokens"] == 50
-        assert response.metrics["model"] == "gemini-2.0-flash"
+        assert response.metrics["model"] == "gemini-2.5-flash-lite"
     
     @patch("app.services.llm_providers.gemini_provider.genai")
     @patch("app.services.llm_providers.gemini_provider.HarmCategory")
@@ -478,12 +478,12 @@ class TestOllamaProvider:
         """Test Ollama provider initialization"""
         provider = OllamaProvider(
             base_url="http://localhost:11434",
-            model="gemma3:12b"
+            model="gemma3:4b"
         )
         
         assert provider.name == "Ollama"
         assert provider.base_url == "http://localhost:11434"
-        assert provider.model == "gemma3:12b"
+        assert provider.model == "gemma3:4b"
     
     @patch("httpx.AsyncClient")
     async def test_ollama_generate_response(self, mock_client):
@@ -492,7 +492,7 @@ class TestOllamaProvider:
         mock_response = MagicMock()
         mock_response.status_code = 200
         mock_response.json.return_value = {
-            "model": "gemma3:12b",
+            "model": "gemma3:4b",
             "response": "Ollama response",
             "done": True,
             "eval_count": 400,
@@ -509,7 +509,7 @@ class TestOllamaProvider:
         # Create provider and test
         provider = OllamaProvider(
             base_url="http://localhost:11434",
-            model="gemma3:12b"
+            model="gemma3:4b"
         )
         response = await provider.generate_response(
             prompt="Test prompt",
@@ -520,7 +520,7 @@ class TestOllamaProvider:
         mock_client_instance.post.assert_called_once_with(
             "http://localhost:11434/api/generate",
             json={
-                "model": "gemma3:12b",
+                "model": "gemma3:4b",
                 "prompt": "Test prompt",
                 "stream": False,
                 "system": "You are a helpful assistant.",
@@ -538,5 +538,5 @@ class TestOllamaProvider:
         assert isinstance(response, LLMResponse)
         assert response.content == "Ollama response"
         assert response.source == "Ollama"
-        assert response.metrics["model"] == "gemma3:12b"
+        assert response.metrics["model"] == "gemma3:4b"
         assert response.metrics["eval_count"] == 400

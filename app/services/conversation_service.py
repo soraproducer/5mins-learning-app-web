@@ -119,7 +119,7 @@ class ConversationService:
         conversation_id: UUID,
         message_content: str,
         providers: List[str] = None,
-        local_model_id: str = "gemma3:12b"
+        local_model_id: str = "gemma3:4b"
     ) -> str:
         """
         Add a follow-up reply to an existing conversation
@@ -233,7 +233,7 @@ class ConversationService:
         user_message_content: str,
         parent_message_id: UUID,
         providers: List[str] = None,
-        local_model_id: str = "gemma3:12b"
+        local_model_id: str = "gemma3:4b"
     ) -> str:
         """
         Generate an assistant reply for a specific user message (used for retries)
@@ -340,7 +340,7 @@ class ConversationService:
         self, 
         conversation_id: UUID,
         providers: List[str] = None,
-        local_model_id: str = "gemma3:12b"
+        local_model_id: str = "gemma3:4b"
     ) -> str:
         """
         Generate the first reply for a conversation using LLM orchestrator

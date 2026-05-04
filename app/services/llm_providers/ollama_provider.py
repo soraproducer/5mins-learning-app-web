@@ -12,7 +12,7 @@ from app.services.llm_providers.base import BaseLLMProvider, LLMResponse
 
 class OllamaParams(BaseModel):
     """Parameters for Ollama API calls"""
-    model: str = Field(default="gemma3:12b")
+    model: str = Field(default="gemma3:4b")
     temperature: float = Field(default=0.3, ge=0, le=2.0)
     num_predict: int = Field(default=2048, ge=1)  # max_tokens equivalent
     top_p: float = Field(default=0.9, ge=0, le=1.0)
