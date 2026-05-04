@@ -30,14 +30,14 @@ async def mock_create_conversation(conversation_data: dict):
 async def mock_first_reply(conversation_id: str, config: dict = None):
     """Mock endpoint for first reply"""
     if config is None:
-        config = {"providers": ["openai", "claude", "gemini"], "local_model_id": "gemma3:12b"}
+        config = {"providers": ["openai", "claude", "gemini"], "local_model_id": "gemma3:4b"}
     
     return {
         "status": "processing",
         "message": "First reply generation initiated",
         "conversation_id": conversation_id,
         "providers": config.get("providers", ["openai", "claude", "gemini"]),
-        "local_model_id": config.get("local_model_id", "gemma3:12b")
+        "local_model_id": config.get("local_model_id", "gemma3:4b")
     }
 
 @test_router.get("/api/conversations/{conversation_id}/messages")

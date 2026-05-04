@@ -25,7 +25,7 @@ async def test_start_first_reply(
     result = await conversation_service.start_first_reply(
         conversation_id=test_conversation.conversation_id,
         providers=["openai", "claude"],
-        local_model_id="gemma3:12b"
+        local_model_id="gemma3:4b"
     )
     
     # Assert

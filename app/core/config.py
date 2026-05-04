@@ -18,20 +18,20 @@ class Settings(BaseSettings):
     
     # LLM API Keys and Models (consolidated)
     OPENAI_API_KEY: str = Field(default="")
-    OPENAI_MODEL: str = Field(default="")
+    OPENAI_MODEL: str = Field(default="gpt-5.4-mini")
     
     ANTHROPIC_API_KEY: str = Field(default="")
-    ANTHROPIC_MODEL: str = Field(default="")
+    ANTHROPIC_MODEL: str = Field(default="claude-3-5-haiku-20241022")
     
     GEMINI_API_KEY: str = Field(default="")
-    GEMINI_MODEL: str = Field(default="")
+    GEMINI_MODEL: str = Field(default="gemini-2.5-flash-lite")
     
     # Default enabled providers (allows users to select which providers to use)
     DEFAULT_ENABLED_PROVIDERS: List[str] = Field(default=["openai", "claude", "gemini"])
     
     # Ollama Config (local LLM)
-    OLLAMA_BASE_URL: str = Field(default="")
-    OLLAMA_MODEL: str = Field(default="")
+    OLLAMA_BASE_URL: str = Field(default="http://localhost:11434")
+    OLLAMA_MODEL: str = Field(default="gemma3:4b")
 
     model_config = {
         "env_file": ".env.local",

@@ -79,6 +79,15 @@ DATABASE_URL=postgresql+asyncpg://username@localhost:5432/5mins_learning
 OPENAI_API_KEY=your_openai_key_here
 ANTHROPIC_API_KEY=your_anthropic_key_here
 GEMINI_API_KEY=your_gemini_key_here
+
+# Affordable hosted model defaults
+OPENAI_MODEL=gpt-5.4-mini
+ANTHROPIC_MODEL=claude-3-5-haiku-20241022
+GEMINI_MODEL=gemini-2.5-flash-lite
+
+# Local summarization
+OLLAMA_BASE_URL=http://localhost:11434
+OLLAMA_MODEL=gemma3:4b
 ```
 
 #### Install and Configure Ollama
@@ -89,6 +98,8 @@ brew install ollama
 # Pull required models
 ollama pull gemma3:4b
 ollama pull gemma3:12b
+ollama pull qwen3:4b
+ollama pull llama3.2:3b
 
 # Verify Ollama is running
 curl http://localhost:11434/api/tags
@@ -125,7 +136,7 @@ Frontend runs on: `http://localhost:3000`
 #### **Home Page**
 - Enter your learning question in the central input box
 - Select expert LLM providers (ChatGPT, Claude, Gemini)
-- Choose your local summarization model (gemma3:4b or gemma3:12b)
+- Choose your local summarization model
 - Click submit to start your 5-minute learning session
 
 #### **Conversation Page**
@@ -178,14 +189,21 @@ python -m app.tests.real_tests.test_live_server
 The app supports flexible LLM provider configuration:
 
 - **Multi-provider queries**: Select any combination of ChatGPT, Claude, and Gemini
-- **Local summarization**: Choose between gemma3:4b (faster) or gemma3:12b (more capable)
+- **Hosted model IDs**: Configure OpenAI, Anthropic, and Google models in `.env.local`
+- **Local summarization**: Choose a local Ollama model from the frontend dropdown
 - **Graceful degradation**: App works with any available providers
 
 ### Model Options
-- **OpenAI**: gpt-4o-mini (default)
-- **Anthropic**: claude-3-haiku-20240307 (default)
-- **Google**: gemini-2.0-flash (default)
-- **Ollama**: gemma3:4b, gemma3:12b, deepseek-r1:8b
+- **OpenAI**: `gpt-5.4-mini` (default), or `gpt-5.4-nano` for the lowest-cost simple tasks
+- **Anthropic**: `claude-3-5-haiku-20241022` (default), or `claude-3-haiku-20240307` for the lowest Claude token price
+- **Google**: `gemini-2.5-flash-lite` (default), or `gemini-2.5-flash` for stronger price/performance
+- **Ollama**: `gemma3:4b` (default), `gemma3:12b`, `qwen3:4b`, `llama3.2:3b`
+
+Current model references:
+- OpenAI models: https://developers.openai.com/api/docs/models
+- Anthropic models and pricing: https://docs.anthropic.com/en/docs/about-claude/models/all-models
+- Gemini models and pricing: https://ai.google.dev/gemini-api/docs/models/gemini
+- Ollama library: https://ollama.com/library
 
 ## ⭐ Star History
 

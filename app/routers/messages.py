@@ -11,7 +11,7 @@ class ReplyConfig(BaseModel):
     message_content: Optional[str] = Field(None, description="Content of the message to process")
     providers: List[str] = Field(default=["openai", "claude", "gemini"], 
                                 description="LLM providers to use for generating responses")
-    local_model_id: str = Field(default="gemma3:12b",
+    local_model_id: str = Field(default="gemma3:4b",
                                description="Local model ID for summarization")
 
 router = APIRouter()

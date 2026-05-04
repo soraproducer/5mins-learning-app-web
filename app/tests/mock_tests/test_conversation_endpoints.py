@@ -198,7 +198,7 @@ async def test_get_conversation_messages_endpoint(test_client, test_conversation
                     "content": "Test answer",
                     "timestamp": "2025-05-17T14:01:00",
                     "parent_message_id": message_id,
-                    "llm_id": "ollama/gemma3:12b",
+                    "llm_id": "ollama/gemma3:4b",
                     "llm_metadata": {"confidence": 0.95},
                     "replies": None
                 }
@@ -243,4 +243,4 @@ async def test_get_conversation_messages_endpoint(test_client, test_conversation
     assert reply["role"] == "assistant"
     assert reply["content"] == "Test answer"
     assert reply["parent_message_id"] == message_id
-    assert reply["llm_id"] == "ollama/gemma3:12b"
+    assert reply["llm_id"] == "ollama/gemma3:4b"
