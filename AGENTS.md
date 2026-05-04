@@ -1,0 +1,21 @@
+## OrgMemory MCP Usage
+
+- When answering questions about implementation rationale, architecture decisions, historical PR context, rejected alternatives, project workflows, or how/why code is shaped a certain way, consult OrgMemory MCP before relying only on code inspection.
+- Use project slug `orgmemory` unless the user names a different project.
+- Prefer the most specific tool for the user's question:
+  - Current workflow, API, module, product behavior, or "how does this work now?" -> call `get_project_context` first, then verify against current code because published memory can lag the checkout.
+  - "Why", design tradeoff, rejected alternative, historical rationale, or "why is this shaped this way?" -> call `find_applicable_design_choices` first with any path, component, symbol, workflow, or PR hints.
+  - Known current decision topic -> call `get_current_decision` with `topic_key`; if only a natural-language topic is known, use `query`.
+  - Decision evolution, supersession, or older choices -> call `get_decision_history` when available; otherwise use `find_applicable_design_choices` and say history-specific tooling was unavailable.
+  - Precise lookup for a stored fact, constraint, decision, or project memory -> call `search_assertions` when available; otherwise use `get_current_decision` for decision-shaped queries or `get_project_context` for broader context.
+  - Known assertion id -> call `get_assertion` when available; if it is not available, use `trace_assertion_provenance` when provenance is needed and state that full assertion hydration was unavailable.
+  - Evidence locations, audit trail, or PR/review provenance for an assertion -> call `trace_assertion_provenance`.
+  - PR memory/review state -> call `get_pr_memory_summary`.
+  - PR local-session linking state -> call `get_pr_session_link_state`.
+  - Manual session attach/detach -> call `manual_attach_session_to_pr` or `manual_detach_session_from_pr` only when the user explicitly asks for that mutation.
+- Combine tools when the question spans categories. For example, for "why does this current workflow work this way?", call `find_applicable_design_choices` for rationale and `get_project_context` for current workflow context.
+- If `find_applicable_design_choices` returns no matches but the question is still about current workflow, API, module behavior, or published docs, follow up with `get_project_context` before falling back to code inspection.
+- After finding an assertion that affects the answer, cite the assertion id. Use `trace_assertion_provenance` when evidence locations, source kinds, review provenance, or auditability matter.
+- If an MCP tool named here is not exposed in the current client, say which tool is unavailable and use the closest available read-only tool; do not invent MCP results.
+- If MCP returns no relevant evidence, say that no matching OrgMemory MCP evidence was found, then inspect code normally.
+- If MCP evidence and current code disagree, distinguish them explicitly: "OrgMemory says ..." versus "the current checkout shows ...".
